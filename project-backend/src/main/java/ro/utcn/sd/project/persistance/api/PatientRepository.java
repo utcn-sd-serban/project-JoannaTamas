@@ -14,4 +14,6 @@ public interface PatientRepository {
     Optional<Patient> findById(int id);
 
     Patient findByName(String username);
+
+    Patient findByID(int id);
 }

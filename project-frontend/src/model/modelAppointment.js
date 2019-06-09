@@ -3,8 +3,10 @@ import RestClient from "../rest/RestClient";
 import WebSocketListener from "../ws/WebSocketListener";
 
 
-const client= new RestClient("patient","password");
-const listener = new WebSocketListener("patient","password");
+const client= new RestClient("ioana","pass");
+const listener = new WebSocketListener("ioana","pass");
+
+
 
 class Model extends EventEmitter {
     constructor() {
@@ -13,16 +15,16 @@ class Model extends EventEmitter {
             appointments: [{
                date:"2019-02-09",
                reason:"some reason",
-               idpatient:"1"  
+               patient_id_id:"1"  
             }, {
                 date:"2018-02-09",
                reason:"some other reason ",
-               idpatient:"1"
+               patient_id_id:"1"
             }],
             newAppointment: {
                date: "",
                reason: "",
-               idpatient: ""
+               patient_id_id: ""
               
             },
          
@@ -44,9 +46,7 @@ class Model extends EventEmitter {
             appointments:appointments
         };
         this.emit("change", this.state);
-
     }
-
     */
 
     loadAppointments(){
@@ -60,13 +60,23 @@ class Model extends EventEmitter {
     }
     
     
-    /*
-    addQuestion(author,title, text,date,tag){
-        return client.createQuestion(author,title, text,date,tag)
-        .then(question=> this.appendQuestion(question));
+    
+    addAppointment(date,reason,patient_id_id){
+        return client.createAppointment(date,reason,patient_id_id)
+        .then(appointment=> this.appendAppointment(appointment));
     
 }
-*/
+         
+
+    deleteAppointment(index){
+        var id=this.getAppointmentId(index);
+        return client.deleteAppointment(id);
+    }
+
+    getAppointmentId(index){
+        return this.state.appointments[index].id;
+
+    }
 
     appendAppointment(appointment){
         this.state = {
@@ -77,21 +87,21 @@ class Model extends EventEmitter {
         this.emit("change", this.state);
 
     }
-    
-    addAppointment(date,reason,idpatient) {
+    /*
+    addAppointment(date,reason,patient_id_id) {
         this.state = {
             ...this.state,
             questions: this.state.questions.concat([{
                 date:date,
                 reason,
-                idpatient
+                patient_id_id
                
               
             }])
         };
         this.emit("change", this.state);
     }
-
+*/
 
     changeNewAppointmentProperty(property,value) {
         this.state = {
@@ -114,9 +124,11 @@ class Model extends EventEmitter {
 
     }
 
- 
+
     
 }
+
+
 
 
 
@@ -125,6 +137,11 @@ const modelAppointment = new Model();
 listener.on("event", event => {
     if (event.type === "APPOINTMENT_CREATED") {
         modelAppointment.appendAppointment(event.appointment);
+    }
+
+    if(event.type === "APPOINTMENT_DELETED"){
+        modelAppointment.deleteAppointment(event.id);
+
     }
 });
 

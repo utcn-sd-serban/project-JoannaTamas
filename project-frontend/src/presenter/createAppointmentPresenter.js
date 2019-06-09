@@ -6,14 +6,14 @@ class CreateAppointmentPresenter {
         modelAppointment.addAppointment(
                                    modelAppointment.state.newAppointment.date,
                                    modelAppointment.state.newAppointment.reason,
-                                   modelAppointment.state.newAppointment.idpatient
+                                   modelAppointment.state.newAppointment.patient_id_id
                                
                                    );
         modelAppointment.changeNewAppointmentProperty("date", "");
         modelAppointment.changeNewAppointmentProperty("reason ",  "");
-        modelAppointment.changeNewAppointmentProperty("idpatient  ",   "");
+        modelAppointment.changeNewAppointmentProperty("patient_id_id  ",   "");
        
-        window.location.assign("#/appointment-list");
+        window.location.assign("#/appointments-list");
     }
 
     onChange(property, value) {

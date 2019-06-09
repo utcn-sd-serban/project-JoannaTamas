@@ -9,10 +9,8 @@ export default class SmartUserOperations extends Component {
     render() {
         return (
             <PatientOperations
-               // onAddQuestion    ={userOperationsPresenter.onAddQuestion}
+                onAddAppointment ={patientOperationsPresenter.onAddAppointment}
                 onListAppointments  ={patientOperationsPresenter.onListAppointments}
-                //onFilterQuestions={userOperationsPresenter.onFilterQuestions}
-                
                  />
         );
     }

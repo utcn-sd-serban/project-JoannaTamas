@@ -20,7 +20,7 @@ public class PatientManagementService {
 
     @Transactional
     public Patient findByUsername(String username) {
-        return repositoryFactory.createPatientRepository().findById(2).get();
+        return repositoryFactory.createPatientRepository().findById(1).get();
 
     }
 

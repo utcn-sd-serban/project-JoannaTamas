@@ -27,7 +27,8 @@ export default class SmartAppointmentsList extends Component {
             <AppointmentsList 
                // onViewDetails={questionsListPresenter.onViewDetails}
                // onCreateAppointment={appointmentsListPresenter.onCreateAppointment}
-                appointments={this.state.appointments} />
+               onDelete={appointmentsListPresenter.onDeleteAppointment}
+               appointments={this.state.appointments} />
         );
     }
 }

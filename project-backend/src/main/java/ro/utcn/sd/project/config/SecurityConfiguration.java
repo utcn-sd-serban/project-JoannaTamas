@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ro.utcn.sd.project.service.PatientManagementService;
 import ro.utcn.sd.project.service.PatientUserDetailsService;
 
 @Configuration
@@ -17,9 +16,6 @@ import ro.utcn.sd.project.service.PatientUserDetailsService;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final PatientUserDetailsService userDetailsService;
-
-
-
 
 
     @Override
@@ -35,10 +31,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
 
-
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
-
 
 
     }

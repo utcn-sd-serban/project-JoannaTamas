@@ -2,7 +2,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 
 
-const PatientOperations = ({title1, onAddAppointment, onListAppointments}) => (
+const PatientOperations = ({title1, onAddAppointment, onListAppointments, onDeleteAppointments}) => (
     <div class="col-sm-6 offset-sm-3 text-center">
     <div class="jumbotron jumbotron-fluid">  
 
@@ -25,6 +25,7 @@ const PatientOperations = ({title1, onAddAppointment, onListAppointments}) => (
         <button type="button" class="btn btn-outline-primary" onClick={onListAppointments}>Display Appointments</button>
         <br />
         <br />
+       
         
     </div>
     </div>

@@ -5,8 +5,8 @@ class Model extends EventEmitter {
         super();
         this.state = {
             patients: [{ 
-                username:"patient",
-                password:"password"
+                username:"ioana",
+                password:"pass"
             }],
                 currentPatient: {
                 username: "",

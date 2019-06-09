@@ -8,9 +8,6 @@ class PatientOperationsPresenter {
     onListAppointments(){
         window.location.assign("#/appointments-list");
     }
-
-  
-
  
 
 }

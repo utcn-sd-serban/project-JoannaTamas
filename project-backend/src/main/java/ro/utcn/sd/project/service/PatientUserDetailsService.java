@@ -20,7 +20,7 @@ public class PatientUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        Patient user = repository.createPatientRepository().findById(2).get();
+        Patient user = repository.createPatientRepository().findById(1).get();
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 Collections.singletonList(new SimpleGrantedAuthority("ROLE_PATIENT")));
@@ -31,7 +31,7 @@ public class PatientUserDetailsService implements UserDetailsService {
     @Transactional
     public Patient loadCurrentUser() {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
-        return repository.createPatientRepository().findById(2).get();
+        return repository.createPatientRepository().findById(1).get();
 
 
     }

@@ -12,6 +12,7 @@ const LoginUser = ({username,password, onLoginPatient,onLoginDentist,onCheck }) 
   <div class="container">
  
 <div class="info alert-dismissible fade show " role="alert">
+
   
   <h2>Login to your account </h2>
  

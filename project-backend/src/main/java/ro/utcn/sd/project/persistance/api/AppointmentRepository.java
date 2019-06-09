@@ -1,6 +1,5 @@
 package ro.utcn.sd.project.persistance.api;
 
-import org.springframework.stereotype.Component;
 import ro.utcn.sd.project.model.Appointment;
 
 import java.util.List;

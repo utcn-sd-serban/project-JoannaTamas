@@ -1,7 +1,6 @@
 package ro.utcn.sd.project.persistance.jpa;
 
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.stereotype.Component;
 import ro.utcn.sd.project.model.Patient;
 import ro.utcn.sd.project.persistance.api.PatientRepository;
@@ -44,9 +43,15 @@ public class HibernatePatientRepository implements PatientRepository {
     }
 
     @Override
+    public Patient findByID(int id) {
+
+        return entityManager.find(Patient.class, id);
+    }
+
+    @Override
     public Patient findByName(String username) {
 
-        return entityManager.find(Patient.class,username);
+        return entityManager.find(Patient.class, username);
     }
 
 

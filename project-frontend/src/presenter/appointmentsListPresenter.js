@@ -14,8 +14,15 @@ class AppointmentsListPresenter {
     onInit(){
       modelAppointment.loadAppointments();
     }
- 
 
+
+
+    onDeleteAppointment(index){
+      modelAppointment.deleteAppointment(index)
+      .then(() =>{
+        window.location.assign("#/appointment-list" + index);
+      });
+    }
 }
 
 const appointmentsListPresenter = new AppointmentsListPresenter();

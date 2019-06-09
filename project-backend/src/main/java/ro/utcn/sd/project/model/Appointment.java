@@ -8,9 +8,12 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Entity
-@ToString(of={"id","date","reason","idPatient"})
+@ToString(of = {"id", "date", "reason", "patient_id"})
 public class Appointment {
 
     @Id
@@ -19,16 +22,16 @@ public class Appointment {
     private Timestamp date;
     private String reason;
 
-   // private Integer idDentist;
+    // private Integer idDentist;
 
     @OneToOne
     @JoinColumn
-    private Patient idPatient;
+    private Patient patient_id;
 
 
-    public Appointment(Timestamp dateTime, String reason,Patient id ) {
-        this.date=dateTime;
-        this.reason=reason;
-        this.idPatient=id;
+    public Appointment(Timestamp dateTime, String reason, Patient id) {
+        this.date = dateTime;
+        this.reason = reason;
+        this.patient_id = id;
     }
 }

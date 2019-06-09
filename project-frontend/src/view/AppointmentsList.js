@@ -1,6 +1,6 @@
 import React from "react";
 
-const AppointmentsList = ({ appointments, title1 }) => (
+const AppointmentsList = ({ appointments, onDelete }) => (
     
     <div>
         <div class="jumbotron jumbotron-fluid">  
@@ -26,7 +26,8 @@ const AppointmentsList = ({ appointments, title1 }) => (
                         <tr class="table-light" key={index}>
                             <td>{appointment.date}</td>
                             <td>{appointment.reason}</td>
-                            <td>{appointment.patient}</td>
+                            <td>{appointment.patient_id_id}</td>
+                            <td> <button className="button muted-button" onClick={() => onDelete(index)}>Delete</button> </td>
                          
                           
                         </tr>

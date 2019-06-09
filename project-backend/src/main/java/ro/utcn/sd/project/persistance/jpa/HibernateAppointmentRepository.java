@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
+
 @RequiredArgsConstructor
 public class HibernateAppointmentRepository implements AppointmentRepository {
     private final EntityManager entityManager;
@@ -43,6 +44,7 @@ public class HibernateAppointmentRepository implements AppointmentRepository {
 
     @Override
     public Optional<Appointment> findById(int id) {
-        return Optional.empty();
+        return Optional.ofNullable(entityManager.find(Appointment.class, id));
     }
+
 }

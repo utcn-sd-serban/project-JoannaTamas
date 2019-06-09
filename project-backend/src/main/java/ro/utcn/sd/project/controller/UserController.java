@@ -12,15 +12,11 @@ public class UserController {
     private final PatientUserDetailsService service;
 
     @GetMapping("/me")
-    public Patient readCurrent(){
-
-
+    public Patient readCurrent() {
         return service.loadCurrentUser();
 
 
     }
-
-
 
 
 }

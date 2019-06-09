@@ -1,7 +1,6 @@
 package ro.utcn.sd.project.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import ro.utcn.sd.project.dto.AppointmentDTO;
@@ -9,7 +8,6 @@ import ro.utcn.sd.project.exception.AppointmentNotFoundException;
 import ro.utcn.sd.project.model.Appointment;
 import ro.utcn.sd.project.persistance.api.AppointmentRepository;
 import ro.utcn.sd.project.persistance.api.RepositoryFactory;
-
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -21,21 +19,21 @@ import java.util.stream.Collectors;
 public class AppointmentManagementService {
     private final RepositoryFactory repositoryFactory;
 
-    /*
-        @Transactional
-        public AppointmentDTO addAppointment(AppointmentDTO dto) {
-            Appointment appointment = new Appointment();
-            appointment.setId(dto.getId());
-            appointment.setDate(dto.getDate());
-            appointment.setReason(dto.getReason());
-            appointment.setIdPatient(repositoryFactory.createPatientRepository().findByName(dto.getPatient()));
-            AppointmentDTO output = AppointmentDTO.ofEntity(repositoryFactory.createAppointmentRepository().save(appointment));
 
-            return output;
+    @Transactional
+    public AppointmentDTO addAppointmentDTO(AppointmentDTO dto) {
+        Appointment appointment = new Appointment();
+        appointment.setId(dto.getId());
+        appointment.setDate(dto.getDate());
+        appointment.setReason(dto.getReason());
+        appointment.setPatient_id(repositoryFactory.createPatientRepository().findByID(dto.getPatient_id_id()));
+        AppointmentDTO output = AppointmentDTO.ofEntity(repositoryFactory.createAppointmentRepository().save(appointment));
+
+        return output;
 
 
-        }
-        */
+    }
+
     @Transactional
     public List<AppointmentDTO> listAppointmentsDTO() {
         return repositoryFactory.createAppointmentRepository().findAll().stream()
@@ -46,13 +44,13 @@ public class AppointmentManagementService {
 
     @Transactional
     public Appointment updateUserOfQuestion(Appointment appointment) {
-        appointment.setIdPatient(repositoryFactory.createPatientRepository().findById(appointment.getIdPatient().getId()).get());
+        appointment.setPatient_id(repositoryFactory.createPatientRepository().findById(appointment.getPatient_id().getId()).get());
         return appointment;
 
     }
 
     @Transactional
-    public Appointment addAppointment(Appointment appointment){
+    public Appointment addAppointment(Appointment appointment) {
         return repositoryFactory.createAppointmentRepository().save(appointment);
     }
 
@@ -62,6 +60,7 @@ public class AppointmentManagementService {
         AppointmentRepository repository = repositoryFactory.createAppointmentRepository();
         Appointment appointment = repository.findById(id).orElseThrow(AppointmentNotFoundException::new);
         repository.remove(appointment);
+
     }
 
 }
